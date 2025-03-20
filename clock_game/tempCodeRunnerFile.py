@@ -1,0 +1,1 @@
+rect = dial.get_rect(center=(415, 418))

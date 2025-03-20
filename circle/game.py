@@ -8,7 +8,7 @@ clock = pygame.time.Clock()
 FPS = 60
 
 x, y = W // 2, H // 2
-speed = 20
+speed = 5
 radius = 25
 flLeft = flRight = False
 flUp = flDown = False
@@ -32,27 +32,27 @@ while True:
             if event.key in [pygame.K_UP, pygame.K_DOWN]:
                 flUp = flDown = False
 
-    # Терезе өлшемін алу
+    
     a, b = pygame.display.get_window_size()
 
-    # X координатасы
+    
     if flLeft and x - speed >= radius:
         x -= speed
     elif flRight and x + speed <= a - radius:
         x += speed
 
-    # Y координатасы
+    
     if flUp and y - speed >= radius:
         y -= speed
     elif flDown and y + speed <= b - radius:
         y += speed
 
-    # Фонды жаңарту
+
     sc.fill((255, 255, 255))
 
-    # Допты салу
+  
     pygame.draw.circle(sc, (255, 0, 0), (x, y), radius)
 
-    # Экранды жаңарту
+   
     pygame.display.update()
     clock.tick(FPS)

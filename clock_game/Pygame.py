@@ -1,25 +1,38 @@
 import pygame
 from datetime import datetime
+
 pygame.init()
 screen = pygame.display.set_mode((829, 836))
 clock = pygame.time.Clock()
-dial = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/dial.png")
-l = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/left-hand.png")
-r = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/right-hand.png")
-rect = dial.get_rect(center=(415, 418))
+
+
+clockk = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/clock_game/clock.png")
+l = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/clock_game/leftarm.png")
+r = pygame.image.load(r"/Users/elnrsahar/Desktop/Python tasks/lab7/clock_game/rightarm.png")
+
+rect = clockk.get_rect(center=(415, 418))
+
 while True:
-    screen.blit(dial,(0,0))
+    screen.fill((255, 255, 255))  
+    screen.blit(clockk, rect.topleft)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
+
     t = datetime.now().time()
-    a1 =- (t.second*6)
-    n = pygame.transform.rotate(l,a1)
-    rect2 = n.get_rect(center = rect.center)
-    screen.blit(n,rect2.topleft)
-    a2 =- (t.minute)
-    n2 = pygame.transform.rotate(r,a2)
-    rect3 = n2.get_rect(center = rect.center)
-    screen.blit(n2,rect3.topleft)
+    
+    
+    sec_angle = -t.second * 6  
+    sec_hand = pygame.transform.rotate(l, sec_angle)
+    sec_rect = sec_hand.get_rect(center=rect.center)  
+    screen.blit(sec_hand, sec_rect.topleft)
+
+   
+    min_angle = -t.minute * 6  
+    min_hand = pygame.transform.rotate(r, min_angle)
+    min_rect = min_hand.get_rect(center=rect.center)  
+    screen.blit(min_hand, min_rect.topleft)
+
     pygame.display.flip()
     clock.tick(60)
